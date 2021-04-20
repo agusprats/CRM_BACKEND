@@ -17,12 +17,8 @@ clientCtrl.createClient = async (req, res, next) => {
     const newClient = new Client({ name, lastname, company, mail, phone, date});
     try {
         const client = await newClient.save();
-            res.json({
-            message: "New user added",
-            id: newUser.id,
-            createdAt: newUser.date
-            }) 
-            console.log(client)
+            res.json({ message: "New user added"}) 
+            console.log(newClient)
     } catch(errmsg) {
         res.json(errmsg);
         next()}
@@ -46,7 +42,7 @@ clientCtrl.showClient = async (req, res, next) => {
     const client = await Client.findById(req.params.idClient);
     if(!client) {
         res.json({message: "No client to show"}); 
-        next()
+        return next()
     }
     res.json(client)
 };

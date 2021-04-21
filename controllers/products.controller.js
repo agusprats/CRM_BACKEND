@@ -95,7 +95,7 @@ productCtrl.updateProduct = async (req, res, next) => {
 
 productCtrl.deleteProduct = async (req, res, next) => {
     try{
-        await Product.findOneAndDelete({_id: req.params.idClient});
+        await Product.findOneAndDelete({_id: req.params.idProduct});
         res.json({message: 'Product removed'});
     }catch(error){
         console.log(error);

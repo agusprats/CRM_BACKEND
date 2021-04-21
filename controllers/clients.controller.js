@@ -17,7 +17,7 @@ clientCtrl.createClient = async (req, res, next) => {
     const newClient = new Client({ name, lastname, company, mail, phone, date});
     try {
         const client = await newClient.save();
-            res.json({ message: "New user added"}) 
+            res.json({ message: "New client added"}) 
             console.log(newClient)
     } catch(errmsg) {
         res.json(errmsg);

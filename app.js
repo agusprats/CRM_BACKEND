@@ -18,6 +18,6 @@ app.use('/api/clients', require('./routes/clients'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/orders', require('./routes/orders'));
 
-
+app.use(express.static('uploads'));
 
 module.exports = app;

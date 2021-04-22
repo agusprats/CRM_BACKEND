@@ -2,6 +2,7 @@ const productCtrl = {};
 const Product = require('../models/Product');
 const multer = require('multer');
 const shortid = require('shortid');
+const { ConnectionStates } = require('mongoose');
 
 const configMulter = {
     storage: fileStorage = multer.diskStorage({
@@ -43,7 +44,7 @@ productCtrl.newProduct = async (req, res, next) => {
             product.image = req.file.filename
         }
         await product.save();
-            res.json({message: "New product added"}) 
+            res.json({message: "New product added !!!"}) 
             console.log(product)
     }catch(error) {
         res.json(error);
@@ -64,7 +65,7 @@ productCtrl.getProducts = async (req, res, next) => {
 productCtrl.showProduct = async (req, res, next) => { 
     const product = await Product.findById(req.params.idProduct);
     if(!product) {
-        res.json({message: "No product to show"}); 
+        res.json({message: "No product to show ..."}); 
         return next()
     }
     res.json(product);
@@ -74,7 +75,6 @@ productCtrl.updateProduct = async (req, res, next) => {
     try{
         //Build new product
         let newProduct = req.body;
-
         //Verify if new image exists
         if(req.file){
             newProduct.image = req.file.filename;
@@ -82,25 +82,35 @@ productCtrl.updateProduct = async (req, res, next) => {
             let oldProduct = await Product.finById(req.params.idProduct);
             newProduct.image = oldProduct.image;
         }
-
         let product = await Product.findOneAndUpdate({_id: req.params.idProduct},newProduct, {
             new:true,
         });
-        res.json(product)
-    }catch(error){
-        res.send(error);
-        next();
+            res.json(product)
+        }catch(error){
+            res.send(error);
+            next();
     }
 }
 
 productCtrl.deleteProduct = async (req, res, next) => {
     try{
         await Product.findOneAndDelete({_id: req.params.idProduct});
-        res.json({message: 'Product removed'});
+        res.json({message: 'Product removed !!!'});
     }catch(error){
         console.log(error);
         next();
     }
 }
-    
+
+productCtrl.searchProduct = async (req, res, next) => {
+    try{
+        const{query} = req.params;
+        const product = await Product.find({ name: new RegExp(query,'i')});
+        res.json(product);
+    }catch(error){
+        console.log(error);
+        next();
+}
+
+}
 module.exports = productCtrl;

@@ -3,7 +3,7 @@ const router = Router();
 
 const {newOrder, getOrders, showOrder, updateOrder, deleteOrder} = require('../controllers/orders.controller');
 
-router.route('/order')
+router.route('/order/new/:idClient')
     .post(newOrder);
 router.route('/order')
     .get(getOrders);

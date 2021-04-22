@@ -1,7 +1,7 @@
 const {Router } = require('express');
 const router = Router();
 
-const {uploadFile, newProduct, getProducts, showProduct, updateProduct, deleteProduct} = require('../controllers/products.controller');
+const {uploadFile, newProduct, getProducts, showProduct, updateProduct, deleteProduct, searchProduct} = require('../controllers/products.controller');
 
 router.route('/product')
     .post(uploadFile, newProduct);
@@ -13,5 +13,7 @@ router.route('/product/:idProduct')
     .put(updateProduct);
 router.route('/product/:idProduct')
     .delete(deleteProduct);
+router.route('/product/search/:query')
+    .post(searchProduct);
 
 module.exports = router;

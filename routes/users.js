@@ -1,6 +1,7 @@
 const {Router } = require('express');
 const router = Router();
 
+
 const {signup, signin} = require('../controllers/users.controller');
 
 router.route('/signup')

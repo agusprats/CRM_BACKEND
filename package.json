@@ -19,7 +19,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon ./index.js"
+    "desarrollo": "nodemon ./index.js",
+    "start": "node ./index.js"
   },
   "repository": {
     "type": "git",

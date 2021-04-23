@@ -3,6 +3,8 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 
+
+app.use(express.static('uploads'));
 //Settings
 app.set('port', process.env.PORT || 4001);
 app.set('host', process.env.HOST || '0.0.0.0');
@@ -22,7 +24,7 @@ app.use('/api/products', require('./routes/products'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/users', require('./routes/users'));
 
-app.use(express.static('uploads'));
+
 
 module.exports = app;
 

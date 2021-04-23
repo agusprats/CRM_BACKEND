@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/api/clients', require('./routes/clients'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/orders', require('./routes/orders'));
+app.use('/api/users', require('./routes/users'));
 
 app.use(express.static('uploads'));
 
